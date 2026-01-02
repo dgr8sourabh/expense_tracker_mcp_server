@@ -7,6 +7,7 @@ import sqlite3
 import os
 
 connection_string = os.path.join(os.path.dirname(__file__), "expenses.db")
+CATEGORIES_PATH = os.path.join(os.path.dirname(__file__), "categories.json")
 
 def init_db_connection(connection_string: str):
     try:
@@ -29,6 +30,7 @@ init_db_connection(connection_string)
 # creating a FastMCP server
 mcp = FastMCP(name="my_first_mcp_server")
 
+
 @mcp.tool
 def add_expense(date, amount, category, subcategory, note):
     """Adds an expense to the database."""
@@ -38,6 +40,7 @@ def add_expense(date, amount, category, subcategory, note):
             (date, amount, category, subcategory, note),
         )
         return {"status": "success", "id": cursor.lastrowid}
+
 
 @mcp.tool
 def list_expenses():
@@ -67,6 +70,13 @@ def list_expense_between_dates(start_date, end_date):
             (start_date, end_date))
         cols = [d[0] for d in curr.description]
         return [dict(zip(cols, r)) for r in curr.fetchall()]
+
+
+@mcp.resource("expense://categories", mime_type="application/json")
+def categories():
+    with open(CATEGORIES_PATH, "r", encoding="utf-8") as f:
+        return f.read()
+
 
 if __name__ == "__main__":
     mcp.run()

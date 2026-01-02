@@ -1,0 +1,39 @@
+{
+  "food": [
+    "groceries",
+    "restaurants",
+    "fast food",
+    "coffee",
+    "dine in",
+    "delivery",
+    "take away"
+  ],
+  "transport": [
+    "public transport",
+    "taxi",
+    "uber",
+    "ola",
+    "bus"
+  ],
+  "housing": [
+    "rent",
+    "buy",
+    "lease"
+  ],
+  "health": [
+    "doctor",
+    "hospital",
+    "medicine"
+  ],
+  "entertainment": [
+    "movies",
+    "music",
+    "sports"
+  ],
+  "general": [
+    "jobs",
+    "education",
+    "travel"
+  ],
+  "other": []
+}
